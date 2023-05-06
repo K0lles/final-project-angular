@@ -9,20 +9,21 @@ import {MovieService} from "./movie.service";
 })
 export class AppComponent {
   title = 'final-project-angular';
-  isListView: boolean = true;
+  isListView: boolean = false;
   darkMode: boolean = false;
 
   toggleDarkMode() {
     this.darkMode = !this.darkMode;
+    localStorage.setItem('darkMode', String(this.darkMode));
   }
 
   fb = new FormBuilder();
 
-  constructor(movieService: MovieService) {
-  }
+  constructor(movieService: MovieService) { }
 
   ngOnInit() {
-
+    let darkMode: any = localStorage.getItem('darkMode');
+    this.darkMode = darkMode === 'true';
   }
 
   movieForm = this.fb.group({

@@ -1,4 +1,5 @@
 <button (click)="toggleDarkMode()" class="btn btn-primary mb-3">Toggle Dark Mode</button>
+<button (click)="isListView = !isListView" class="btn btn-primary mb-3">Toggle List View</button>
 
 <div class="container" [ngClass]="{ 'dark-mode': darkMode }">
   <div class="row">
@@ -7,17 +8,21 @@
         <img class="card-img-top" src="{{ movie.photo }}" alt="{{ movie.name }}">
         <div class="card-body">
           <h5 class="card-title">{{ movie.name }}</h5>
-          <p class="card-text">{{ movie.year_of_release }} | {{ movie.box_office }}</p>
-          <p class="card-text">{{movie.created_at | date: 'd.MM.y' }</p>
+          <div class="card-text">
+            <p>{{ movie.year_of_release }} | {{ movie.box_office | numberPipe }}</p>
+            <p>{{ movie.created_at | date: 'd.MM.y' }}</p>
+          </div>
         </div>
       </div>
       <div class="list-group-item" *ngIf="isListView">
-        <div class="d-flex justify-content-between">
-          <img class="card-img-top" src="{{ movie.photo }}" alt="{{ movie.name }}" [ngStyle]="{'width': '200px', 'height': '200px'}">
-          <h5>{{ movie.name }}</h5>
-          <small>{{ movie.year_of_release }} | {{ movie.box_office | numberPipe }}</small>
-          <p>{{movie.created_at | date: 'd.MM.y'}}</p>
-        </div>
+        <ul>
+          <div class="d-flex justify-content-between">
+            <img class="card-img-top" src="{{ movie.photo }}" alt="{{ movie.name }}" [ngStyle]="{'width': '200px', 'height': '200px'}">
+            <h5>{{ movie.name }}</h5>
+            <small>{{ movie.year_of_release }} | {{ movie.box_office | numberPipe }}</small>
+            <p>{{ movie.created_at | date: 'd.MM.y' }}</p>
+          </div>
+        </ul>
       </div>
     </div>
   </div>

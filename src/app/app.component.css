@@ -1,0 +1,28 @@
+.container {
+  background-color: #fff;
+}
+
+.dark-mode .container {
+  background-color: #222;
+  color: #fff;
+}
+
+.card {
+  background-color: #fff;
+  border: none;
+}
+
+.dark-mode .card {
+  background-color: #222;
+  color: #fff;
+}
+
+.list-group-item {
+  background-color: #f8f9fa;
+  border: none;
+}
+
+.dark-mode .list-group-item {
+  background-color: #343a40;
+  color: #fff;
+}
