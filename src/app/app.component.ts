@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
+import {Component, OnInit, Renderer2} from '@angular/core';
+import {FormBuilder, FormControl, ValidatorFn, Validators} from '@angular/forms';
 import {MovieService} from "./movie.service";
 
 @Component({
@@ -7,7 +7,7 @@ import {MovieService} from "./movie.service";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'final-project-angular';
   isListView: boolean = false;
   darkMode: boolean = false;
@@ -15,15 +15,35 @@ export class AppComponent {
   toggleDarkMode() {
     this.darkMode = !this.darkMode;
     localStorage.setItem('darkMode', String(this.darkMode));
+    this.changeBodyClass();
+  }
+
+  toggleListView() {
+    this.isListView = !this.isListView;
+    localStorage.setItem('isListView', String(this.isListView));
   }
 
   fb = new FormBuilder();
 
-  constructor(movieService: MovieService) { }
+  constructor(movieService: MovieService, private renderer: Renderer2) { }
 
   ngOnInit() {
     let darkMode: any = localStorage.getItem('darkMode');
     this.darkMode = darkMode === 'true';
+    this.changeBodyClass();
+
+    let isListView: any = localStorage.getItem('isListView');
+    this.isListView = isListView === 'true';
+  }
+
+  // Changes the class of body for dark or light mode respectively
+  changeBodyClass() {
+    if (this.darkMode) {
+      this.renderer.addClass(document.body, 'dark-mode');
+    }
+    else {
+      this.renderer.removeClass(document.body, 'dark-mode');
+    }
   }
 
   movieForm = this.fb.group({

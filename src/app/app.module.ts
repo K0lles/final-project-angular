@@ -6,6 +6,7 @@ import {RouterOutlet} from "@angular/router";
 import { NumberPipePipe } from './number-pipe.pipe';
 import { AppRoutingModule } from './app-routing.module';
 import { MovieCreationComponent } from './movie-creation/movie-creation.component';
+import {NgOptimizedImage} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { MovieCreationComponent } from './movie-creation/movie-creation.componen
   imports: [
     BrowserModule,
     RouterOutlet,
-    AppRoutingModule
+    AppRoutingModule,
+    NgOptimizedImage
   ],
   providers: [],
   bootstrap: [AppComponent]

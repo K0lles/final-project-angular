@@ -45,4 +45,8 @@ export class MovieService {
     let parsed_movies = JSON.stringify(movies);
     localStorage.setItem('movies', parsed_movies);
   }
+
+  get movies(): any {
+    return this.movies.asObservable();
+  }
 }

@@ -1,5 +1,14 @@
+ul {
+  list-style-type: none;
+}
+
 .container {
   background-color: #fff;
+}
+
+.dark-mode {
+  background-color: #222;
+  color: #fff;
 }
 
 .dark-mode .container {
@@ -25,4 +34,12 @@
 .dark-mode .list-group-item {
   background-color: #343a40;
   color: #fff;
+}
+
+.list-margin {
+  margin-top: 4%;
+}
+
+.margin-left-element {
+  margin-left: 4%;
 }
