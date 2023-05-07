@@ -1,0 +1,47 @@
+<div class="container" [ngClass]="{'dark-mode': isDarkMode}">
+  <div class="row">
+    <div class="col-md-3 float-end">
+      <button (click)="toggleListView()" class="btn btn-primary mb-3">{{ isListView ? 'Switch to Card View' : 'Switch to List View' }}</button>
+    </div>
+  </div>
+</div>
+
+<div class="container" [ngClass]="{ 'dark-mode': isDarkMode }">
+  <div class="container" [ngClass]="{'dark-mode': isDarkMode}">
+    <div class="row">
+      <div class="col-md-3 float-end">
+        <button (click)="toggleListView()" class="btn btn-primary mb-3">{{ isListView ? 'Switch to Card View' : 'Switch to List View' }}</button>
+        <input type="text" [(ngModel)]="searchQuery" placeholder="Search movie by name">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4" routerLink="update/{{movie.id}}" [ngClass]="{ 'list-view': isListView, 'card-view': !isListView, 'dark-mode': isDarkMode }" *ngFor="let movie of movies">
+      <div class="card" [ngClass]="{'dark-mode': darkMode}" *ngIf="!isListView">
+        <img class="card-img-top" src="{{ movie.photo }}" alt="{{ movie.name }}" [ngStyle]="{'width': '200px', 'height': '200px'}">
+        <div class="card-body">
+          <h5 class="card-title">{{ movie.name }}</h5>
+          <div class="card-text">
+            <p>{{ movie.year_of_release }} | {{ movie.box_office | numberPipe }}</p>
+            <p>{{ movie.created_at | date: 'd.MM.y' }}</p>
+          </div>
+          <button class="btn btn-danger" (click)="deleteMovie(movie.id)">Delete movie</button>
+        </div>
+      </div>
+    </div>
+    <ul class="list text-center" *ngIf="isListView" [ngStyle]="{'padding-left': '10%'}">
+      <li class="list-item" routerLink="update/{{movie.id}}"  [ngClass]="{'dark-mode': isDarkMode, 'list-margin': true}" *ngFor="let movie of movies">
+        <div class="list-item-details d-flex">
+          <img src="{{ movie.photo }}" [ngStyle]="{'width': '50px', 'height': '50px'}" alt="photo">
+          <h3 class="list-item-title margin-left-element">{{ movie.name }}</h3>
+          <div class="list-item-info margin-left-element">
+            <span class="list-item-year">{{ movie.year_of_release }}</span>
+            <span class="list-item-box-office" style="margin-left: 20px;">{{ movie.box_office | numberPipe }}</span>
+            <span class="list-item-date" style="margin-left: 20px;">{{ movie.created_at | date: 'd.MM.y' }}</span>
+          </div>
+          <button class="btn btn-danger" (click)="deleteMovie(movie.id)">Delete movie</button>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

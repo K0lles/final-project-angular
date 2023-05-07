@@ -1,42 +1,14 @@
 <div class="container" [ngClass]="{'dark-mode': darkMode}">
   <div class="row">
-    <div class="col-md-6 float-start">
+    <div class="col-md-3 float-start">
       <button (click)="toggleDarkMode()" class="btn btn-primary mb-3">{{ darkMode ? 'Light Mode' : 'Dark Mode' }}</button>
     </div>
-    <div class="col-md-6 float-end">
-      <button (click)="toggleListView()" class="btn btn-primary mb-3">{{ isListView ? 'Switch to Card View' : 'Switch to List View' }}</button>
+    <div class="col-md-3">
+      <a routerLink="/" class="btn btn-primary" routerLinkActive="active">Movies</a>
     </div>
-  </div>
-</div>
-
-<div class="container" [ngClass]="{ 'dark-mode': darkMode }">
-  <div class="row">
-    <div class="col-md-4" [ngClass]="{ 'list-view': isListView, 'card-view': !isListView, 'dark-mode': darkMode }" *ngFor="let movie of movies">
-      <div class="card" [ngClass]="{'dark-mode': darkMode}" *ngIf="!isListView">
-        <img class="card-img-top" src="{{ movie.photo }}" alt="{{ movie.name }}" [ngStyle]="{'width': '200px', 'height': '200px'}">
-        <div class="card-body">
-          <h5 class="card-title">{{ movie.name }}</h5>
-          <div class="card-text">
-            <p>{{ movie.year_of_release }} | {{ movie.box_office | numberPipe }}</p>
-            <p>{{ movie.created_at | date: 'd.MM.y' }}</p>
-          </div>
-        </div>
-      </div>
+    <div class="col-md-3">
+      <a routerLink="create" class="btn btn-primary" routerLinkActive="active">Create movie</a>
     </div>
-    <ul class="list text-center" *ngIf="isListView" [ngStyle]="{'padding-left': '10%'}">
-      <li class="list-item" [ngClass]="{'dark-mode': darkMode, 'list-margin': true}" *ngFor="let movie of movies">
-<!--        <div class="list-item-photo" [ngStyle]="{'background-image': 'url(' + movie.photo + ')'}"></div>-->
-        <div class="list-item-details d-flex">
-          <img src="{{ movie.photo }}" [ngStyle]="{'width': '50px', 'height': '50px'}" alt="photo">
-          <h3 class="list-item-title margin-left-element">{{ movie.name }}</h3>
-          <div class="list-item-info margin-left-element">
-            <span class="list-item-year">{{ movie.year_of_release }}</span>
-            <span class="list-item-box-office">{{ movie.box_office | numberPipe }}</span>
-            <span class="list-item-date">{{ movie.created_at | date: 'd.MM.y' }}</span>
-          </div>
-        </div>
-      </li>
-    </ul>
   </div>
 </div>
 <router-outlet></router-outlet>

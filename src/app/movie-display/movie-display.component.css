@@ -1,3 +1,8 @@
+button.active {
+  background-color: green;
+  color: #222222;
+}
+
 ul {
   list-style-type: none;
 }
@@ -49,17 +54,3 @@ a.active {
   color: #f8f9fa;
 }
 
-.success-snackbar {
-  background-color: green;
-  color: white;
-}
-
-.error-snackbar {
-  background-color: red;
-  color: white;
-}
-
-.warning-snackbar {
-  background-color: yellow;
-  color: black;
-}
